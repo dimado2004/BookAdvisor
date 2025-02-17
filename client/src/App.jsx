@@ -2,6 +2,19 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProfilePage from "./ProfilePage";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* Autres composants */}
+    </QueryClientProvider>
+  );
+}
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,6 +43,16 @@ function App() {
       </p>
     </>
   )
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/profile/:userId" element={<ProfilePage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App

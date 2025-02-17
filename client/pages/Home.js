@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { searchBooks } from "../api";
 import logo from "../assets/logo.png";
+import RecommendedBooks from "../components/RecommendedBooks";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -10,6 +11,8 @@ const Home = () => {
     const { data } = await searchBooks(query);
     setBooks(data);
   };
+
+  const userId = "monUserId"; // Remplace avec l'ID de l'utilisateur connecté
 
   return (
     <div className="p-8 text-center">
@@ -31,10 +34,18 @@ const Home = () => {
             <p>{book.author}</p>
             <img src={book.image} alt={book.title} className="w-24 mx-auto" />
           </div>
+
         ))}
       </div>
     </div>
   );
 };
+
+return (
+  <div>
+    <h1>Bienvenue sur votre bibliothèque 📚</h1>
+    <RecommendedBooks userId={userId} />
+  </div>
+);
 
 export default Home;
